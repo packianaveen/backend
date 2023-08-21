@@ -1,12 +1,11 @@
 let mongoose = require("mongoose"),
   express = require("express"),
   router = express.Router();
-const { v4: uuidv4 } = require("uuid");
+
 let path = require("path");
 const multer = require("multer");
-// Student Model
+let ServiceCenterSchema = require("../Models/serviceCenter");
 
-let catgeriesSchema = require("../Models/Catogeries");
 const storage = multer.diskStorage({
   destination: (req, file, cd) => {
     cd(null, "images");
@@ -17,43 +16,45 @@ const storage = multer.diskStorage({
 });
 
 const upload = multer({ storage: storage });
-router.route("/get-catogery").get((req, res) => {
-  catgeriesSchema
-    .find()
+router.route("/getCenter").get((req, res) => {
+  ServiceCenterSchema.find()
     .then((colur) => res.json(colur))
     .catch((err) => res.status(400).json("Error: " + err));
 });
-router.route("/delete-catogery/:id").delete((req, res) => {
-  catgeriesSchema
-    .findByIdAndRemove(req.params.id, req.body)
-    .then((response) => res.json("newAd deleted"))
+router.route("/deleteCenter/:id").delete((req, res) => {
+  ServiceCenterSchema.findByIdAndRemove(req.params.id, req.body)
+    .then((response) => res.json(response))
     .catch((err) => res.status(400).json("Error: " + err));
 });
-router.route("/edit-catogery/:id").get((req, res) => {
-  catgeriesSchema
-    .findById(req.params.id)
+router.route("/editCenter/:id").get((req, res) => {
+  ServiceCenterSchema.findById(req.params.id)
     .then((exercise) => res.json(exercise))
     .catch((err) => res.status(400).json("Error: " + err));
 });
 router
-  .route("/create-catogery")
+  .route("/addCenter")
   .post(upload.single("photo"))
   .post((req, res) => {
     const name = req.body.name;
-    const orderNo = req.body.orderNo;
+    const phoneNo = req.body.phoneNo;
     const status = req.body.status;
+    const address = req.body.address;
     const services = req.body.services;
+    const pin = req.body.pin;
     const photo = req.file.filename;
-    const newAd = new catgeriesSchema({
+    console.log(phoneNo);
+    const newAd = new ServiceCenterSchema({
       name,
-      orderNo,
-      status,
       photo,
+      phoneNo,
+      status,
+      address,
       services,
+      pin,
     });
     newAd
       .save()
-      .then((cat) => res.json(cat))
+      .then((response) => res.json(response))
       .catch((err) => res.status(400).json("Error: " + err));
   });
 

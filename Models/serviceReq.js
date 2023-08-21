@@ -2,20 +2,18 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 let catogeriesSchema = new Schema(
   {
-    name: {
+    catagery: {
       type: String,
     },
-    orderNo: {
+    service: {
+      type: String,
+    },
+    user: {
       type: String,
     },
     status: {
       type: String,
-    },
-    photo: {
-      type: String,
-    },
-    services: {
-      type: String,
+      default: "open",
     },
     createdAt: {
       type: Date,
@@ -24,7 +22,7 @@ let catogeriesSchema = new Schema(
   },
 
   {
-    collection: "Catogeries",
+    collection: "servicerequest",
   }
 );
-module.exports = mongoose.model("Catogeries", catogeriesSchema);
+module.exports = mongoose.model("servicerequest", catogeriesSchema);

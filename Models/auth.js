@@ -14,6 +14,9 @@ let loginSchema = new Schema(
     pin: {
       type: String,
     },
+    type: {
+      type: String,
+    },
     createdAt: {
       type: Date,
       default: new Date(),

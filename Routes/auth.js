@@ -19,7 +19,7 @@ router.route("/checkUser").post((req, res) => {
     .find({ phone: phone })
     .then((response) => {
       if (response[0].password === password) {
-        res.send(res.json(response));
+        res.send(response);
       } else {
         res.send({ message: "wrong credentials" });
       }
@@ -32,23 +32,18 @@ router.route("/checkUser").post((req, res) => {
   //   .then((response) => res.json(response))
   //   .catch((err) => res.status(400).json("Error: " + err));
 });
-// router.route("/deleteAd/:id").delete((req, res) => {
-//   adSchema
-//     .findByIdAndRemove(req.params.id, req.body)
-//     .then((response) => res.json("newAd deleted"))
-//     .catch((err) => res.status(400).json("Error: " + err));
-// });
-// router.route("/editAd/:id").get((req, res) => {
-//   adSchema
-//     .findById(req.params.id)
-//     .then((exercise) => res.json(exercise))
-//     .catch((err) => res.status(400).json("Error: " + err));
-// });
+router.route("/getusers").get((req, res) => {
+  loginSchema
+    .find()
+    .then((user) => res.json(user))
+    .catch((err) => res.status(400).json("Error: " + err));
+});
 router.route("/userAd").post((req, res) => {
   const phone = req.body.phone;
   const pin = req.body.pin;
   const password = req.body.password;
-  const newAd = new loginSchema({ phone, pin, password });
+  const type = req.body.type;
+  const newAd = new loginSchema({ phone, pin, password, type });
   newAd
     .save()
     .then((response) => res.json(response))

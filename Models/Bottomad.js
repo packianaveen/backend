@@ -14,6 +14,10 @@ let bottomadSchema = new Schema(
     photo: {
       type: String,
     },
+    createdAt: {
+      type: Date,
+      default: new Date(),
+    },
   },
 
   {

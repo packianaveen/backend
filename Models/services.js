@@ -1,14 +1,14 @@
 const mongoose = require("mongoose");
-
 const Schema = mongoose.Schema;
-
-let trendadSchema = new Schema(
+let servicesSchema = new Schema(
   {
     name: {
       type: String,
     },
-
-    url: {
+    orderNo: {
+      type: String,
+    },
+    status: {
       type: String,
     },
     photo: {
@@ -21,7 +21,7 @@ let trendadSchema = new Schema(
   },
 
   {
-    collection: "Trendads",
+    collection: "Services",
   }
 );
-module.exports = mongoose.model("Trendads", trendadSchema);
+module.exports = mongoose.model("Services", servicesSchema);
