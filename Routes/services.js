@@ -26,13 +26,27 @@ router.route("/get-service").get((req, res) => {
 router.route("/delete-service/:id").delete((req, res) => {
   servicesSchema
     .findByIdAndRemove(req.params.id, req.body)
-    .then((response) => res.json("newAd deleted"))
+    .then((response) => res.json(response))
     .catch((err) => res.status(400).json("Error: " + err));
 });
+
 router.route("/edit-service/:id").get((req, res) => {
   servicesSchema
     .findById(req.params.id)
     .then((exercise) => res.json(exercise))
+    .catch((err) => res.status(400).json("Error: " + err));
+});
+router.route("/serviceedit/:id").patch((req, res) => {
+  servicesSchema
+    .findByIdAndUpdate(req.params.id, {
+      $set: {
+        name: req.body.name,
+        orderNo: req.body.orderNo,
+        status: req.body.status,
+        photo: req.body.photo,
+      },
+    })
+    .then((response) => res.json(response))
     .catch((err) => res.status(400).json("Error: " + err));
 });
 router

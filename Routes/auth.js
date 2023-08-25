@@ -38,12 +38,19 @@ router.route("/getusers").get((req, res) => {
     .then((user) => res.json(user))
     .catch((err) => res.status(400).json("Error: " + err));
 });
+router.route("/deleteuser/:id").delete((req, res) => {
+  loginSchema
+    .findByIdAndRemove(req.params.id, req.body)
+    .then((response) => res.json(response))
+    .catch((err) => res.status(400).json("Error: " + err));
+});
 router.route("/userAd").post((req, res) => {
   const phone = req.body.phone;
   const pin = req.body.pin;
   const password = req.body.password;
   const type = req.body.type;
-  const newAd = new loginSchema({ phone, pin, password, type });
+  const admin = req.body.admin;
+  const newAd = new loginSchema({ phone, pin, password, type, admin });
   newAd
     .save()
     .then((response) => res.json(response))

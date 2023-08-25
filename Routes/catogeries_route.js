@@ -26,7 +26,7 @@ router.route("/get-catogery").get((req, res) => {
 router.route("/delete-catogery/:id").delete((req, res) => {
   catgeriesSchema
     .findByIdAndRemove(req.params.id, req.body)
-    .then((response) => res.json("newAd deleted"))
+    .then((response) => res.json(response))
     .catch((err) => res.status(400).json("Error: " + err));
 });
 router.route("/edit-catogery/:id").get((req, res) => {
