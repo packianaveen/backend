@@ -34,6 +34,18 @@ router.route("/editAd/:id").get((req, res) => {
     .then((exercise) => res.json(exercise))
     .catch((err) => res.status(400).json("Error: " + err));
 });
+router.route("/adedit/:id").patch((req, res) => {
+  adSchema
+    .findByIdAndUpdate(req.params.id, {
+      $set: {
+        name: req.body.name,
+        url: req.body.url,
+        photo: req.body.photo,
+      },
+    })
+    .then((response) => res.json(response))
+    .catch((err) => res.status(400).json("Error: " + err));
+});
 router
   .route("/add")
   .post(upload.single("photo"))

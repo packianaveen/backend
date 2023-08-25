@@ -28,8 +28,20 @@ router.route("/deletetrendAd/:id").delete((req, res) => {
     .then((response) => res.json(response))
     .catch((err) => res.status(400).json("Error: " + err));
 });
+router.route("/trendedit/:id").patch((req, res) => {
+  trendadSchema
+    .findByIdAndUpdate(req.params.id, {
+      $set: {
+        name: req.body.name,
+        url: req.body.url,
+        photo: req.body.photo,
+      },
+    })
+    .then((response) => res.json(response))
+    .catch((err) => res.status(400).json("Error: " + err));
+});
 router.route("/edittrendAd/:id").get((req, res) => {
-  bottomadSchema
+  trendadSchema
     .findById(req.params.id)
     .then((exercise) => res.json(exercise))
     .catch((err) => res.status(400).json("Error: " + err));
