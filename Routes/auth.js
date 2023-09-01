@@ -44,6 +44,12 @@ router.route("/deleteuser/:id").delete((req, res) => {
     .then((response) => res.json(response))
     .catch((err) => res.status(400).json("Error: " + err));
 });
+router.route("/getuser/:id").get((req, res) => {
+  loginSchema
+    .findById(req.params.id)
+    .then((exercise) => res.json(exercise))
+    .catch((err) => res.status(400).json("Error: " + err));
+});
 router.route("/userAd").post((req, res) => {
   const phone = req.body.phone;
   const pin = req.body.pin;

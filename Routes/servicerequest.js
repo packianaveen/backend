@@ -27,5 +27,11 @@ router.route("/getRequestedservice").get((req, res) => {
     .then((colur) => res.json(colur))
     .catch((err) => res.status(400).json("Error: " + err));
 });
+router.route("/getrequestservice/:id").get((req, res) => {
+  servicesSchema
+    .find({ user: { $in: [req.params.id] } })
 
+    .then((exercise) => res.json(exercise))
+    .catch((err) => res.status(400).json("Error: " + err));
+});
 module.exports = router;
