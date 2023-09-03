@@ -25,12 +25,6 @@ router.route("/checkUser").post((req, res) => {
       }
     })
     .catch((err) => res.status(400).json("Error: " + err));
-
-  // const newAd = new loginSchema({ phone, pin, password });
-  // newAd
-  //   .save()
-  //   .then((response) => res.json(response))
-  //   .catch((err) => res.status(400).json("Error: " + err));
 });
 router.route("/getusers").get((req, res) => {
   loginSchema
