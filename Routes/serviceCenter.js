@@ -31,6 +31,21 @@ router.route("/editCenter/:id").get((req, res) => {
     .then((exercise) => res.json(exercise))
     .catch((err) => res.status(400).json("Error: " + err));
 });
+router.route("/centerEdit/:id").patch((req, res) => {
+  ServiceCenterSchema.findByIdAndUpdate(req.params.id, {
+    $set: {
+      name: req.body.name,
+      phoneNo: req.body.phone,
+      status: req.body.Status,
+      address: req.body.address,
+      services: req.body.services,
+      photo: req.body.photo,
+      pin: req.body.pin,
+    },
+  })
+    .then((response) => res.json(response))
+    .catch((err) => res.status(400).json("Error: " + err));
+});
 router
   .route("/addCenter")
   .post(upload.single("photo"))
