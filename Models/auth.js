@@ -20,6 +20,9 @@ let loginSchema = new Schema(
     admin: {
       type: String,
     },
+    status: {
+      type: String,
+    },
     createdAt: {
       type: Date,
       default: new Date(),

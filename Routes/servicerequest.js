@@ -11,7 +11,8 @@ router.route("/createRequest").post((req, res) => {
   const catagery = req.body.data;
   const service = req.body.service;
   const user = req.body.user;
-  const newAd = new servicesSchema({ catagery, service, user });
+  const type = req.body.type;
+  const newAd = new servicesSchema({ catagery, service, user, type });
   newAd
     .save()
     .then((cat) => res.json(cat))

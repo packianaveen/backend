@@ -50,7 +50,8 @@ router.route("/userAd").post((req, res) => {
   const password = req.body.password;
   const type = req.body.type;
   const admin = req.body.admin;
-  const newAd = new loginSchema({ phone, pin, password, type, admin });
+  const status = req.body.status;
+  const newAd = new loginSchema({ phone, pin, password, type, admin, status });
   newAd
     .save()
     .then((response) => res.json(response))

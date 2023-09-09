@@ -51,9 +51,9 @@ router
   .post(upload.single("photo"))
   .post((req, res) => {
     const name = req.body.name;
-    const url = req.body.url;
+    const services = req.body.services;
     const photo = req.file.filename;
-    const newAd = new adSchema({ name, url, photo });
+    const newAd = new adSchema({ name, services, photo });
     newAd
       .save()
       .then((response) => res.json(response))

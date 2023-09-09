@@ -15,6 +15,9 @@ let catogeriesSchema = new Schema(
       type: String,
       default: "open",
     },
+    type: {
+      type: String,
+    },
     createdAt: {
       type: Date,
       default: new Date(),

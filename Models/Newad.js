@@ -8,7 +8,7 @@ let adSchema = new Schema(
       type: String,
     },
 
-    url: {
+    services: {
       type: String,
     },
     photo: {
