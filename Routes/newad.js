@@ -8,7 +8,7 @@ let adSchema = require("../Models/Newad");
 
 const storage = multer.diskStorage({
   destination: (req, file, cd) => {
-    cd(null, "images");
+    cd(null, "Images");
   },
   filename: (req, file, cd) => {
     cd(null, Date.now() + "-" + file.originalname);

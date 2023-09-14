@@ -8,7 +8,7 @@ let bottomadSchema = require("../Models/Bottomad");
 
 const storage = multer.diskStorage({
   destination: (req, file, cd) => {
-    cd(null, `${process.env.url}/Images/`);
+    cd(null, "images");
   },
   filename: (req, file, cd) => {
     cd(null, Date.now() + "-" + file.originalname);

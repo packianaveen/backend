@@ -9,7 +9,7 @@ const multer = require("multer");
 let servicesSchema = require("../Models/services");
 const storage = multer.diskStorage({
   destination: (req, file, cd) => {
-    cd(null, "images");
+    cd(null, "Images");
   },
   filename: (req, file, cd) => {
     cd(null, Date.now() + "-" + file.originalname);
