@@ -44,6 +44,21 @@ router.route("/getuser/:id").get((req, res) => {
     .then((exercise) => res.json(exercise))
     .catch((err) => res.status(400).json("Error: " + err));
 });
+router.route("/updateUser").post((req, res) => {
+  var _id = req.body._id;
+  var inventory = {
+    phone: req.body.phone,
+    pin: req.body.pin,
+    password: req.body.password,
+    type: req.body.type,
+    admin: req.body.admin,
+    status: req.body.status,
+  };
+  loginSchema
+    .findByIdAndUpdate(_id, inventory, { new: true })
+    .then((colur) => res.json(colur))
+    .catch((err) => res.status(400).json("Error: " + err));
+});
 router.route("/userAd").post((req, res) => {
   const phone = req.body.phone;
   const pin = req.body.pin;
