@@ -17,7 +17,7 @@ let ServiceCenterSchema = new Schema(
     address: {
       type: String,
     },
-    service: {
+    services: {
       type: String,
     },
     pin: {

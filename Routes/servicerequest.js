@@ -33,6 +33,7 @@ router.route("/updaterequest").post((req, res) => {
     service: req.body.service,
     status: req.body.status,
     user: req.body.user,
+    closeDate: req.body.status == "close" ? new Date() : "",
   };
   servicesSchema
     .findByIdAndUpdate(_id, inventory, { new: true })
