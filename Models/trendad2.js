@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 
-let trendadSchema = new Schema(
+let trendadSchema1 = new Schema(
   {
     name: {
       type: String,
@@ -24,7 +24,7 @@ let trendadSchema = new Schema(
   },
 
   {
-    collection: "Trendads",
+    collection: "Trendads1",
   }
 );
-module.exports = mongoose.model("Trendads", trendadSchema);
+module.exports = mongoose.model("Trendads1", trendadSchema1);
