@@ -12,6 +12,7 @@ router.route("/updatetheme/:id").post((req, res) => {
     .then((response) => {
       console.log(response.colur);
       response.colur = req.body.color.colur;
+      response.topText = req.body.topText;
       console.log(response);
       response
         .save()
@@ -24,7 +25,7 @@ router.route("/updatetheme/:id").post((req, res) => {
 router.route("/getTheme").get((req, res) => {
   frontendSchema
     .find()
-    .then((colur) => res.json(colur))
+    .then((theme) => res.json(theme))
     .catch((err) => res.status(400).json("Error: " + err));
 });
 

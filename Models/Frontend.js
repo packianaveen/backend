@@ -5,6 +5,9 @@ let frontendSchema = new Schema(
     colur: {
       type: String,
     },
+    topText: {
+      type: String,
+    },
   },
 
   {
