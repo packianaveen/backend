@@ -77,11 +77,10 @@ router
   .route("/add1")
   .post(upload.single("photo"))
   .post((req, res) => {
-    console.log(req, res);
     const name = req.body.name;
-    const url = req.body.url;
+
     const photo = req.file.filename;
-    const newAd = new bottomadSchema({ name, url, photo });
+    const newAd = new bottomadSchema({ name, photo });
     newAd
       .save()
       .then((response) => res.json(response))
