@@ -73,4 +73,18 @@ router
       .catch((err) => res.status(400).json("Error: " + err));
   });
 
+router
+  .route("/add1")
+  .post(upload.single("photo"))
+  .post((req, res) => {
+    const name = req.body.name;
+    const url = req.body.url;
+    const photo = req.file.filename;
+    const newAd = new bottomadSchema({ name, url, photo });
+    newAd
+      .save()
+      .then((response) => res.json(response))
+      .catch((err) => res.status(400).json("Error: " + err));
+  });
+
 module.exports = router;
