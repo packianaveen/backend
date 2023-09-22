@@ -17,6 +17,9 @@ let trendadSchema1 = new Schema(
     photo: {
       type: String,
     },
+    admin: {
+      type: String,
+    },
     createdAt: {
       type: Date,
       default: new Date(),

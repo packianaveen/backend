@@ -35,7 +35,7 @@ router.route("/edit-catogery/:id").get((req, res) => {
     .then((exercise) => res.json(exercise))
     .catch((err) => res.status(400).json("Error: " + err));
 });
-router.route("/serviceedit/:id").patch((req, res) => {
+router.route("/catedit/:id").patch((req, res) => {
   catgeriesSchema
     .findByIdAndUpdate(req.params.id, {
       $set: {
@@ -43,6 +43,7 @@ router.route("/serviceedit/:id").patch((req, res) => {
         orderNo: req.body.orderNo,
         status: req.body.status,
         photo: req.body.photo,
+        admin: req.body.admin,
         services: req.body.services,
       },
     })
@@ -57,6 +58,7 @@ router
     const orderNo = req.body.orderNo;
     const status = req.body.status;
     const services = req.body.services;
+    const admin = req.body.admin;
     const photo = req.file.filename;
     const newAd = new catgeriesSchema({
       name,
@@ -64,6 +66,7 @@ router
       status,
       photo,
       services,
+      admin,
     });
     newAd
       .save()

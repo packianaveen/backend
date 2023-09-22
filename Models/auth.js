@@ -14,6 +14,12 @@ let loginSchema = new Schema(
     pin: {
       type: String,
     },
+    name: {
+      type: String,
+    },
+    font: {
+      type: String,
+    },
     type: {
       type: String,
     },

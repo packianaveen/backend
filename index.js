@@ -14,6 +14,7 @@ const serviceCenter = require("./Routes/serviceCenter");
 const services = require("./Routes/services");
 const auth = require("./Routes/auth");
 const servicerequest = require("./Routes/servicerequest");
+const userProfile = require("./Routes/userprofile");
 const cors = require("cors");
 
 const app = express();
@@ -33,6 +34,7 @@ app.use("/api", trendadd2);
 app.use("/api", serviceCenter);
 app.use("/api", services);
 app.use("/api", servicerequest);
+app.use("/api", userProfile);
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => console.log("MongoDB Connected..."))

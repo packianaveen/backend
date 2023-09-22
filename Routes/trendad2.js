@@ -36,6 +36,7 @@ router.route("/trendedit1/:id").patch((req, res) => {
         url: req.body.url,
         photo: req.body.photo,
         service: req.body.service,
+        admin: req.body.admin,
         catogery: req.body.catogery,
       },
     })
@@ -55,8 +56,9 @@ router
     const name = req.body.name;
     const service = req.body.service;
     const catogery = req.body.catogery;
+    const admin = req.body.admin;
     const photo = req.file.filename;
-    const newAd = new trendadSchema1({ name, service, catogery, photo });
+    const newAd = new trendadSchema1({ name, service, catogery, photo, admin });
     newAd
       .save()
       .then((response) => res.json(response))

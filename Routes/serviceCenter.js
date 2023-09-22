@@ -40,6 +40,7 @@ router.route("/centerEdit/:id").patch((req, res) => {
       address: req.body.address,
       services: req.body.services,
       photo: req.body.photo,
+      admin: req.body.admin,
       pin: req.body.pin,
     },
   })
@@ -56,14 +57,16 @@ router
     const address = req.body.address;
     const services = req.body.services;
     const pin = req.body.pin;
+    const admin = req.body.admin;
     const photo = req.file.filename;
-    console.log(phoneNo);
+
     const newAd = new ServiceCenterSchema({
       name,
       photo,
       phoneNo,
       status,
       address,
+      admin,
       services,
       pin,
     });

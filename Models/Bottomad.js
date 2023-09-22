@@ -7,7 +7,9 @@ let bottomadSchema = new Schema(
     name: {
       type: String,
     },
-
+    admin: {
+      type: String,
+    },
     photo: {
       type: String,
     },

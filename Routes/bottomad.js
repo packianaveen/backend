@@ -40,47 +40,22 @@ router.route("/bottomedit/:id").patch((req, res) => {
       $set: {
         name: req.body.name,
         url: req.body.url,
+        admin: req.body.admin,
         photo: req.body.photo,
       },
     })
     .then((response) => res.json(response))
     .catch((err) => res.status(400).json("Error: " + err));
 });
-router
-  .route("/bottomadd")
-  .post(upload.single("photo"))
-  .post((req, res) => {
-    const name = req.body.name;
-    const url = req.body.url;
-    const photo = req.file.filename;
-    const newAd = new bottomadSchema({ name, url, photo });
-    newAd
-      .save()
-      .then((response) => res.json(response))
-      .catch((err) => res.status(400).json("Error: " + err));
-  });
-router
-  .route("/bottomadd1")
-  .post(upload.single("photo"))
-  .post((req, res) => {
-    const name = req.body.name;
-    const url = req.body.url;
-    const photo = req.file.filename;
-    const newAd = new bottomadSchema({ name, url, photo });
-    newAd
-      .save()
-      .then((response) => res.json(response))
-      .catch((err) => res.status(400).json("Error: " + err));
-  });
 
 router
   .route("/add1")
   .post(upload.single("photo"))
   .post((req, res) => {
     const name = req.body.name;
-
+    const admin = req.body.admin;
     const photo = req.file.filename;
-    const newAd = new bottomadSchema({ name, photo });
+    const newAd = new bottomadSchema({ name, photo, admin });
     newAd
       .save()
       .then((response) => res.json(response))

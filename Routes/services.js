@@ -44,6 +44,7 @@ router.route("/serviceedit/:id").patch((req, res) => {
         orderNo: req.body.orderNo,
         status: req.body.status,
         photo: req.body.photo,
+        admin: req.body.admin,
       },
     })
     .then((response) => res.json(response))
@@ -56,8 +57,9 @@ router
     const name = req.body.name;
     const orderNo = req.body.orderNo;
     const status = req.body.status;
+    const admin = req.body.admin;
     const photo = req.file.filename;
-    const newAd = new servicesSchema({ name, orderNo, status, photo });
+    const newAd = new servicesSchema({ name, orderNo, status, photo, admin });
     newAd
       .save()
       .then((cat) => res.json(cat))

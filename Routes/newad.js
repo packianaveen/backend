@@ -40,6 +40,7 @@ router.route("/adedit/:id").patch((req, res) => {
       $set: {
         name: req.body.name,
         url: req.body.url,
+        admin: req.body.admin,
         photo: req.body.photo,
       },
     })
@@ -52,8 +53,9 @@ router
   .post((req, res) => {
     const name = req.body.name;
     const services = req.body.services;
+    const admin = req.body.admin;
     const photo = req.file.filename;
-    const newAd = new adSchema({ name, services, photo });
+    const newAd = new adSchema({ name, services, photo, admin });
     newAd
       .save()
       .then((response) => res.json(response))

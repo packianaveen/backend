@@ -20,6 +20,9 @@ let ServiceCenterSchema = new Schema(
     services: {
       type: String,
     },
+    admin: {
+      type: String,
+    },
     pin: {
       type: String,
     },
