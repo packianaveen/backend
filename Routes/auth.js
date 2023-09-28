@@ -52,11 +52,13 @@ router.route("/updateUser").post((req, res) => {
     password: req.body.password,
     type: req.body.type,
     admin: req.body.admin,
+    name: req.body.name,
+    font: req.body.font,
     status: req.body.status,
   };
   loginSchema
     .findByIdAndUpdate(_id, inventory, { new: true })
-    .then((colur) => res.json(colur))
+    .then((response) => res.json(response))
     .catch((err) => res.status(400).json("Error: " + err));
 });
 router.route("/userAd").post((req, res) => {
