@@ -11,6 +11,8 @@ node_modules/
 # production
 /build
 Images/
+node_modules
+functions
 # misc
 .DS_Store
 .env.local
