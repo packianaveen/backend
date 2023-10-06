@@ -4,17 +4,17 @@ const mongoose = require("mongoose");
 
 require("dotenv").config();
 
-const catogery = require("../Routes/catogeries_route");
-const frontend = require("../Routes/frontend");
-const newad = require("../Routes/newad");
-const bottomadd = require("../Routes/bottomad");
-const trendadd = require("../Routes/trendad");
-const trendadd2 = require("../Routes/trendad2");
-const serviceCenter = require("../Routes/serviceCenter");
-const services = require("../Routes/services");
-const auth = require("../Routes/auth");
-const servicerequest = require("../Routes/servicerequest");
-const userProfile = require("../Routes/userprofile");
+const catogery = require("./Routes/catogeries_route");
+const frontend = require("./Routes/frontend");
+const newad = require("./Routes/newad");
+const bottomadd = require("./Routes/bottomad");
+const trendadd = require("./Routes/trendad");
+const trendadd2 = require("./Routes/trendad2");
+const serviceCenter = require("./Routes/serviceCenter");
+const services = require("./Routes/services");
+const auth = require("./Routes/auth");
+const servicerequest = require("./Routes/servicerequest");
+const userProfile = require("./Routes/userprofile");
 const cors = require("cors");
 
 const app = express();
@@ -35,7 +35,6 @@ app.use("/api", serviceCenter);
 app.use("/api", services);
 app.use("/api", servicerequest);
 app.use("/api", userProfile);
-app.use("/.netlify/functions/index", auth);
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => console.log("MongoDB Connected..."))
