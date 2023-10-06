@@ -35,7 +35,7 @@ app.use("/api", serviceCenter);
 app.use("/api", services);
 app.use("/api", servicerequest);
 app.use("/api", userProfile);
-// app.use("/.netlify/functions/index", auth);
+app.use("/.netlify/functions/index", auth);
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => console.log("MongoDB Connected..."))
