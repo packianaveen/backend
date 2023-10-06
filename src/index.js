@@ -24,18 +24,18 @@ app.use("/images", express.static(__dirname + "/Images"));
 app.use(express.json());
 
 app.use(cors());
-app.use("/api", newad);
-app.use("/api", catogery);
-app.use("/api", frontend);
-app.use("/api", auth);
-app.use("/api", bottomadd);
-app.use("/api", trendadd);
-app.use("/api", trendadd2);
-app.use("/api", serviceCenter);
-app.use("/api", services);
-app.use("/api", servicerequest);
-app.use("/api", userProfile);
-app.use("/.netlify/functions/server", auth);
+// app.use("/api", newad);
+// app.use("/api", catogery);
+// app.use("/api", frontend);
+// app.use("/api", auth);
+// app.use("/api", bottomadd);
+// app.use("/api", trendadd);
+// app.use("/api", trendadd2);
+// app.use("/api", serviceCenter);
+// app.use("/api", services);
+// app.use("/api", servicerequest);
+// app.use("/api", userProfile);
+app.use("/.netlify/functions/index", auth);
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => console.log("MongoDB Connected..."))
