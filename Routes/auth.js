@@ -1,7 +1,7 @@
 let mongoose = require("mongoose"),
   express = require("express"),
   router = express.Router();
-
+const serverless = require("serverless-http");
 let path = require("path");
 const multer = require("multer");
 let loginSchema = require("../Models/auth");
@@ -87,3 +87,4 @@ router.route("/userAd").post((req, res) => {
 });
 
 module.exports = router;
+module.exports.handler = serverless(router);
