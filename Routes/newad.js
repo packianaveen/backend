@@ -1,7 +1,7 @@
 let mongoose = require("mongoose"),
   express = require("express"),
   router = express.Router();
-
+const cloudinary = require("../cloudinary");
 let path = require("path");
 const multer = require("multer");
 let adSchema = require("../Models/Newad");
@@ -50,11 +50,16 @@ router.route("/adedit/:id").patch((req, res) => {
 router
   .route("/add")
   .post(upload.single("photo"))
-  .post((req, res) => {
+  .post(async (req, res) => {
+    console.log(req.file);
+    const upload = await cloudinary.v2.uploader.upload(
+      req.file.path,
+      (use_filename) => true
+    );
     const name = req.body.name;
     const services = req.body.services;
     const admin = req.body.admin;
-    const photo = req.file.filename;
+    const photo = upload.url;
     const newAd = new adSchema({ name, services, photo, admin });
     newAd
       .save()

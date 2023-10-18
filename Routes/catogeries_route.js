@@ -5,7 +5,7 @@ const { v4: uuidv4 } = require("uuid");
 let path = require("path");
 const multer = require("multer");
 // Student Model
-
+const cloudinary = require("../cloudinary");
 let catgeriesSchema = require("../Models/Catogeries");
 const storage = multer.diskStorage({
   destination: (req, file, cd) => {
@@ -53,13 +53,17 @@ router.route("/catedit/:id").patch((req, res) => {
 router
   .route("/create-catogery")
   .post(upload.single("photo"))
-  .post((req, res) => {
+  .post(async (req, res) => {
+    const upload = await cloudinary.v2.uploader.upload(
+      req.file.path,
+      (use_filename) => true
+    );
     const name = req.body.name;
     const orderNo = req.body.orderNo;
     const status = req.body.status;
     const services = req.body.services;
     const admin = req.body.admin;
-    const photo = req.file.filename;
+    const photo = upload.url;
     const newAd = new catgeriesSchema({
       name,
       orderNo,

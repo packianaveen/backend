@@ -5,7 +5,7 @@ let mongoose = require("mongoose"),
 let path = require("path");
 const multer = require("multer");
 let trendadSchema1 = require("../Models/trendad2");
-
+const cloudinary = require("../cloudinary");
 const storage = multer.diskStorage({
   destination: (req, file, cd) => {
     cd(null, "Images");
@@ -52,12 +52,16 @@ router.route("/edittrendAd1/:id").get((req, res) => {
 router
   .route("/trendadd1")
   .post(upload.single("photo"))
-  .post((req, res) => {
+  .post(async (req, res) => {
+    const upload = await cloudinary.v2.uploader.upload(
+      req.file.path,
+      (use_filename) => true
+    );
     const name = req.body.name;
     const service = req.body.service;
     const catogery = req.body.catogery;
     const admin = req.body.admin;
-    const photo = req.file.filename;
+    const photo = upload.url;
     const newAd = new trendadSchema1({ name, service, catogery, photo, admin });
     newAd
       .save()

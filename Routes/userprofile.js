@@ -1,7 +1,7 @@
 let mongoose = require("mongoose"),
   express = require("express"),
   router = express.Router();
-
+const cloudinary = require("../cloudinary");
 let path = require("path");
 const multer = require("multer");
 const storage = multer.diskStorage({
@@ -38,10 +38,14 @@ router.route("/delete-profile/:id").delete((req, res) => {
 router
   .route("/profileSave")
   .post(upload.single("photo"))
-  .post((req, res) => {
+  .post(async (req, res) => {
+    const upload = await cloudinary.v2.uploader.upload(
+      req.file.path,
+      (use_filename) => true
+    );
     const name = req.body.name;
     const phone = req.body.phone;
-    const photo = req.file?.filename;
+    const photo = upload.url;
     const city = req.body.city;
     const address = req.body.address;
     const user = req.body.user;
