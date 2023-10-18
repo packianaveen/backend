@@ -16,7 +16,10 @@ const storage = multer.diskStorage({
   },
 });
 
-const upload = multer({ storage: storage });
+const upload = multer({
+  storage: multer.diskStorage({}),
+  limits: { fileSize: 500000 },
+});
 router.route("/get-service").get((req, res) => {
   servicesSchema
     .find()
@@ -58,7 +61,6 @@ router
       req.file.path,
       (use_filename) => true
     );
-    console.log(upload);
     const name = req.body.name;
     const orderNo = req.body.orderNo;
     const status = req.body.status;
