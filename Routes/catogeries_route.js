@@ -16,7 +16,10 @@ const storage = multer.diskStorage({
   },
 });
 
-const upload = multer({ storage: storage });
+const upload = multer({
+  storage: multer.diskStorage({}),
+  limits: { fileSize: 500000 },
+});
 router.route("/get-catogery").get((req, res) => {
   catgeriesSchema
     .find()

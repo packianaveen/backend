@@ -15,7 +15,10 @@ const storage = multer.diskStorage({
   },
 });
 
-const upload = multer({ storage: storage });
+const upload = multer({
+  storage: multer.diskStorage({}),
+  limits: { fileSize: 500000 },
+});
 router.route("/gettrendAd").get((req, res) => {
   trendadSchema
     .find()
